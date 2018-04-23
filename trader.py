@@ -21,8 +21,6 @@ def utc_to_local(utc_dt):
 data = []
 steps = [1, 5, 15, 30, 60]
 fibs = [1, 2, 3, 5, 8, 13, 21, 34, 55, 89]
-steps = [1, 5, 10, 15]
-fibs = [1, 2, 3, 5, 8, 13]
 n = len(fibs)
 #n = 5
 pastSteps = fibs[n - 1]
