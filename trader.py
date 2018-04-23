@@ -167,7 +167,7 @@ for k in range(0, len(steps)):
         'fibs': n
     }))
 
-    for i in range(0, int(len(results) / 5)):
+    for i in range(0, int(len(results))):
         population[k].append(Entity(newBuyWeights=results[i]['buyWeights'], newSellWeights=results[i]['sellWeights']))
 
 collection = db.BTC
