@@ -24,10 +24,8 @@ keepPercentage = float(sys.argv[3])
 mutationChance = float(sys.argv[4])
 
 data = []
-#steps = [1, 5, 15, 30, 60]
-#fibs = [1, 2, 3, 5, 8, 13, 21, 34, 55, 89]
-steps = [1, 5, 10, 15]
-fibs = [1, 2, 3, 5, 8, 13]
+steps = [1, 5, 15, 30, 60]
+fibs = [1, 2, 3, 5, 8, 13, 21, 34, 55, 89]
 n = len(fibs)
 #n = 5
 pastSteps = fibs[n - 1]
