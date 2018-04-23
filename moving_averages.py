@@ -113,7 +113,7 @@ class Entity:
         if bool(self.bought) == False:
             if self.calculateBuyProbability() > 0.5:
                 self.bought = coin
-                self.bought['fee'] = coin['price'] * 0.000
+                self.bought['fee'] = coin['price'] * 0.001
         else:
             if ((self.calculateSellProbability() > 0.5)) or coin['price'] < self.bought['price'] * self.stopLoss:
 

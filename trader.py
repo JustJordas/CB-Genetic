@@ -126,7 +126,7 @@ class Entity:
         if bool(self.bought) == False:
             if self.calculateBuyProbability() > 0.5:
                 self.bought = coin
-                self.bought['fee'] = coin['price'] * 0.000
+                self.bought['fee'] = coin['price'] * 0.001
         else:
             if self.calculateSellProbability() > 0.5 or coin['price'] <= self.bought['price'] * self.stopLoss:
                 
@@ -155,6 +155,8 @@ mongo_client = MongoClient('localhost', 27017)
 db = mongo_client.binance
 
 strategyCollection = db.strategy
+
+populationTraded = db.populationTraded
 
 current_milli_time = lambda: int(round(time.time() * 1000))
 
@@ -199,6 +201,7 @@ print(len(data))
 outputTime = [0] * len(steps)
 
 while True:
+    populationTraded.delete_many({})
     print('Time: ' + str(localTime))
     t0 = current_milli_time();
     data.pop(0)
@@ -218,7 +221,7 @@ while True:
             'fibs': n
         }))
 
-        for i in range(0, int(len(results) / 5)):
+        for i in range(0, int(len(results))):
             if len(population[k]) > 0:
                 for j in range(0, len(population[k])):
                     population[k][j].update(newBuyWeights=results[i]['buyWeights'], newSellWeights=results[i]['sellWeights'])
@@ -314,6 +317,23 @@ while True:
             #outputFile.close()
             outputTime[k] += 1
 
+    for k in range(0, len(steps)):
+        for i in range(0, len(population[k])):
+            pop = {
+                '_id': ObjectId(),
+                'strategy': 'moving_averages',
+                'step': steps[k],
+                'time': last,
+                'score': population[k][i].score,
+                'profit': population[k][i].profit,
+                'buyWeights': population[k][i].buyWeights,
+                'sellWeights': population[k][i].sellWeights,
+                'history': population[k][i].history
+            }
+
+            populationTraded.insert_one(pop)
+
     t1 = current_milli_time();
     time.sleep(1 - (t1 - t0) / 1000)
     localTime += 1
+

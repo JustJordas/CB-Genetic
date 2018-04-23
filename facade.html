@@ -1,0 +1,33 @@
+<html>
+
+<head>
+	<title>No Fee Trader</title>
+	<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4-4.0.0/dt-1.10.16/fh-3.1.3/datatables.min.css" />
+</head>
+
+<body>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.20.1/moment.min.js"></script>
+</body>
+<script>
+const socket = new WebSocket('ws://localhost:8081');
+//const socket2 = new WebSocket('ws://localhost:8082')
+
+// Connection opened
+socket.addEventListener('open', function (event) {
+	//socket.send('Hello Server!');
+
+});
+
+// Listen for messages
+socket.addEventListener('message', function (event) {
+	//console.log('%s: Message from server.', new Date());
+
+	var population = JSON.parse(event.data);
+
+	//socket.send('Give one more');
+
+	console.log(population);
+});
+</script>
