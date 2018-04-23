@@ -57,6 +57,8 @@ bm.start()
 
 current_milli_time = lambda: int(round(time.time() * 1000))
 
+tick = {}
+
 while True:
     global tick, localTime
     t0 = current_milli_time()
