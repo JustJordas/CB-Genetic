@@ -27,7 +27,6 @@ bm = BinanceSocketManager(client)
 class MyDict(dict):
     pass
 
-global tick, localTime
 tick = {}
 localTime = 0
 
@@ -59,7 +58,7 @@ bm.start()
 current_milli_time = lambda: int(round(time.time() * 1000))
 
 while True:
-    global tick, localTime
+    #global tick, localTime
     t0 = current_milli_time()
 
     if localTime > 0:
