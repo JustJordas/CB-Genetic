@@ -34,6 +34,8 @@ population = [[]] * len(steps)
 
 localTime = 0
 
+delay = 0.0
+
 class Entity:
     k = len(upOrDown)
 
@@ -341,6 +343,10 @@ while True:
             populationTraded.insert_one(pop)
 
     t1 = current_milli_time()
-    time.sleep(1 - (t1 - t0) / 1000)
+    try:
+        time.sleep(1 - (t1 - t0) / 1000)
+    except ValueError:
+        delay += (t1 - t0) / 1000 - 1
+    print('Delay: ' + str(delay))
     localTime += 1
 

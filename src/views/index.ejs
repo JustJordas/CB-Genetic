@@ -8,8 +8,79 @@
     
 <script type="text/javascript" src="/reconnecting.js"></script>
 </body>
-
+    <div class="container-fluid">
+        <div id="traders" class="row">
+            <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseTrader" aria-expanded="false" aria-controls="collapseTrader">
+                Show Trader [i]
+            </button>
+            <div class="collapse" id="collapseTrader">
+                <div class="card card-body">
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">Step</span>
+                        </div>
+                        <input type="number" class="form-control" value="" disabled>
+                    </div>
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">Time</span>
+                        </div>
+                        <input type="number" class="form-control" value="" disabled>
+                    </div>
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">Score</span>
+                        </div>
+                        <input type="number" class="form-control" value="" disabled>
+                    </div>
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">Profit</span>
+                        </div>
+                        <input type="number" class="form-control" value="" disabled>
+                    </div>
+                    <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseHistory" aria-expanded="false" aria-controls="collapseHistory">
+                        Show Trader [i]
+                    </button>
+                    <div class="collapse" id="collapseHistory">
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">Buy time</span>
+                            </div>
+                            <input type="date" class="form-control" value="" disabled>
+                        </div>
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">Buy price</span>
+                            </div>
+                            <input type="number" class="form-control" value="" disabled>
+                        </div>
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">Sell time</span>
+                            </div>
+                            <input type="date" class="form-control" value="" disabled>
+                        </div>
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">Sell price</span>
+                            </div>
+                            <input type="number" class="form-control" value="" disabled>
+                        </div>
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">Profit</span>
+                            </div>
+                            <input type="number" class="form-control" value="" disabled>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>        
+    </div>
 <script>
+
+var traders = [];
 
 var socket_general = new ReconnectingWebSocket('ws://52.69.235.146:8081');
 ///var socket_general = new ReconnectingWebSocket('ws://127.0.0.1:8081');
@@ -28,8 +99,27 @@ socket_general.addEventListener('message', function (event) {
 
     console.log(general);
 
+    for(var i = 0; i < general.length; i ++){
+        if(i >= traders.length) {
+            traders.push(general[i]);
+
+        } else {
+            traders[i] = general[i].slice();
+        }
+
+        update(i);
+    }
+
     delete general;
 });
+
+function update(i) {
+    if($('#' + i)) {
+
+    } else {
+
+    }
+}
 
 </script>
 
