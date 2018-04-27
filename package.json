@@ -24,5 +24,13 @@
     "gulp": "^3.9.1",
     "gulp-nodemon": "^2.2.1",
     "nodemon": "^1.14.3"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JustJordas/CB-Genetic.git"
+  },
+  "bugs": {
+    "url": "https://github.com/JustJordas/CB-Genetic/issues"
+  },
+  "homepage": "https://github.com/JustJordas/CB-Genetic#readme"
 }
