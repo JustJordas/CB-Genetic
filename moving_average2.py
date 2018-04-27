@@ -225,7 +225,7 @@ outputTime = [0] * len(steps)
 
 current_milli_time = lambda: int(round(time.time() * 1000))
 
-last = data.size - 1
+last = len(data) - 1
 
 for k in range(0, len(steps)):
     step = steps[k]
