@@ -19,7 +19,7 @@ def utc_to_local(utc_dt):
     return germanyTZ.normalize(local_dt) # .normalize might be unnecessary
 
 data = []
-steps = [5, 15, 30, 60, 120, 150]
+steps = [5, 15]
 fibs = [1, 2, 3, 5, 8, 13, 21, 34, 55]
 n = len(fibs)
 #n = 5
@@ -127,7 +127,7 @@ class Entity:
         if bool(self.bought) == False:
             if self.calculateBuyProbability() > 0.5:
                 self.bought = coin
-                self.bought['fee'] = coin['price'] * 0.001
+                self.bought['fee'] = coin['price'] * 0.000
         else:
             if self.calculateSellProbability() > 0.5 or coin['price'] <= self.bought['price'] * self.stopLoss:
                 

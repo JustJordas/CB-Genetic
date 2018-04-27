@@ -24,7 +24,7 @@ keepPercentage = float(sys.argv[3])
 mutationChance = float(sys.argv[4])
 
 data = []
-steps = [5, 15, 30, 60, 120, 150]
+steps = [5, 15]
 fibs = [1, 2, 3, 5, 8, 13, 21, 34, 55]
 n = len(fibs)
 pastSteps = fibs[n - 1]
@@ -111,7 +111,7 @@ class Entity:
         if bool(self.bought) == False:
             if self.calculateBuyProbability() > 0.5:
                 self.bought = coin
-                self.bought['fee'] = coin['price'] * 0.001
+                self.bought['fee'] = coin['price'] * 0.000
         else:
             if ((self.calculateSellProbability() > 0.5)) or coin['price'] < self.bought['price'] * self.stopLoss:
 
@@ -361,7 +361,7 @@ while True:
                 strategyCollection.insert_one(strategy)
                 
             outputTime[k] += 1
-        if k == 3:
+        if k == len(steps) - 1:
             print('Strategies in collection: ' + str(strategyCollection.count()))
     
     for k in range(0, len(steps)):
