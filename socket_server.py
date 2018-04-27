@@ -32,7 +32,7 @@ async def sendData(websocket, path):
 
 	print(population)
 
-	print('Received message');
+	print('Received message')
 	await websocket.send(dumps(population))
 	time.sleep(1)
 	await sendData(websocket, path)

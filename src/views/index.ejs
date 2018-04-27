@@ -1,0 +1,33 @@
+<html>
+
+<head>
+    <title>Genetic test</title>
+</head>
+
+<body>
+    
+</body>
+
+<script>
+
+var socket_general = new ReconnectingWebSocket('ws://13.231.144.191:8081');
+//const socket_private = new WebSocket('ws://localhost:8082');
+
+socket_general.addEventListener('open', function (event) {
+    
+
+    console.log("Hayoo");
+
+    socket_general.send(JSON.stringify(message));
+});
+
+socket_general.addEventListener('message', function (event) {
+    var general = JSON.parse(event.data);
+
+    
+    delete general;
+});
+
+</script>
+
+</html>
