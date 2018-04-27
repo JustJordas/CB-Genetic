@@ -211,17 +211,15 @@ print(localTime)
 
 start_time = localTime
 
-import numpy as np
-
-data = np.array(list(collection.find({
+data = list(collection.find({
     'time': {
         '$gt': localTime - steps[len(steps) - 1] * fibs[len(fibs) - 1]
     }
 }).sort([
     ('time', pymongo.ASCENDING)
-])))
+]))
 
-print(data.size)
+print(len(data))
 
 outputTime = [0] * len(steps)
 
@@ -257,7 +255,7 @@ while True:
     print('Time: ' + str(localTime))
     t0 = current_milli_time()
 
-    data = np.delete(data, 0)
+    data.pop(0)
 
     newEntry = []
 
@@ -266,9 +264,9 @@ while True:
             'time': localTime
         }))
 
-    data = np.append(data, list(newEntry)[0])
+    data.append(list(newEntry)[0])
 
-    last = data.size - 1
+    last = len(data) - 1
 
     for k in range(0, len(steps)):
         step = steps[k]
