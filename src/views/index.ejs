@@ -107,7 +107,7 @@ socket_general.addEventListener('message', function (event) {
             traders.push(general[i]);
 
         } else {
-            traders[i] = general[i].slice();
+            traders[i] = general[i];
         }
 
         update(i);
